@@ -210,6 +210,8 @@ q2_screen = False
 q3_screen = False
 welcome_screen = False
 animal_screen = False
+storage = False
+main = False
 
 bg = pygame.image.load("leaf bg.jpg")
 
@@ -243,6 +245,7 @@ while True:
             successful_click_ibis = create_image_button('IbisSmallReduced.png', 298, 510, 70, 70)
             if successful_click_ibis == 1:
                 ibisFacts = True
+                main = True
                 animal_screen = True
                 mainScreen = False
                 click = 0
@@ -262,9 +265,10 @@ while True:
             click = 0
 
     if storageScreen == True:
-        successful_click_ibis = create_image_button('IbisSmallReduced.png', 50, 50, 70, 70)
+        successful_click_ibis = create_image_resize_button('IbisSmall.png', 25, 25, 100, 100)
         if successful_click_ibis == 1:
             ibisFacts = True
+            storage = True
             animal_screen = True
             storageScreen = False
             click = 0
@@ -316,6 +320,13 @@ while True:
             mousex, mousey = event.pos
             if (event.button == 1):
                 click = 0
+            elif (event.button == 4): #scroll down
+                if main == True:
+                    mainScreen = True
+                    animal_screen = False
+                elif storage == True:
+                    storageScreen = True
+                    animal_screen = False
         elif event.type == KEYDOWN:
             if event.key == K_ESCAPE:
                 pygame.event.post(pygame.event.Event(QUIT))
