@@ -21,19 +21,6 @@ def create_button(msg,x,y,w,h,ic,ac):
 
     return active_click
 
-def create_image_button(icon,x,y,w,h):
-    mouse = pygame.mouse.get_pos()
-
-    active_click = 0
-
-    imageSurfaceObj = pygame.image.load(icon)
-    windowSurfaceObj.blit(imageSurfaceObj, (x, y))
-    
-    if x+w > mouse[0] > x and y+h > mouse[1] > y and click == 1:
-        active_click = 1
-
-    return active_click
-
 def create_text(size,msg,x,y,color):
     textSurfaceObj = size.render(msg, False, color)
     textRectObj = textSurfaceObj.get_rect()
@@ -125,16 +112,39 @@ def done_screen():
     windowSurfaceObj.fill(bgdColor)
     create_text(fontHeadingObj,"Thanks",80,50,darkBlueColor)
 
-
-
 #animals = ['Ibis', 'Cat', 'Dog', 'Horse', 'Possum', 'Fish', 'Curlew']
 ultimoLocal = ['Ibis', 'Pigeon', 'Dog']
-ibis = {'name': 'Australian White Ibis',
+test = {'name': 'Australian White Ibis',
         'location': 'Eastern, Northern and South-Western Australia',
         'funFact': 'While ibises, who are waterbirds, generally live in wetland areas, droughts have meant that ibises now prefer more city based areas with lots of food and water in easy access.'}
 curlew = {'name': 'Bush-Stone Curlew',
           'location': 'Brisbane, Cairns and Townsville, in greener areas',
           'funFact': "While the curlew may look cute, its bird call can be horrifying to hear. Beware: some say it sounds like a person screaming!"}
+
+ibis = {'Scientific Name': 'Australian White Ibis', 'Common Name' : 'Bin Chicken',
+        'Location': 'Australia', 'Color': 'White'
+        }
+
+
+
+def information_screen():
+    windowSurfaceObj.fill(bgdColor)
+    ibisSurfaceObj = pygame.image.load("IbisBig.png")
+    windowSurfaceObj.blit(ibisSurfaceObj, (40,50))
+    create_text(fontHeadingObj,"Ibis",120,250,darkGreenColor)
+    m = 400
+    n = 380
+    o = 375
+    for i in ibis:
+        pygame.draw.rect(windowSurfaceObj, lightboxColor,(30,o,230,47))
+        create_text(fontSmallObj,i,40,n,orangeColor)
+        create_text(fontSmallObj,ibis[i],40,m,darkBlueColor)
+
+        m +=  70
+        n += 70
+        o += 70
+
+
 
 pygame.init()
 fpsClock = pygame.time.Clock()
@@ -157,12 +167,13 @@ orangeColor = pygame.Color(206, 128, 28)
 babyPinkColor = pygame.Color(224, 134, 212)
 yellowColor = pygame.Color(234, 193, 11)
 lightRedColor = pygame.Color(226, 108, 112)
+lightboxColor = pygame.Color(242, 247, 242)
 
 mousex, mousey = 0, 0
 
 fontHeadingObj = pygame.font.SysFont("helveticaneue", 100)
 fontMediumObj = pygame.font.SysFont("helveticaneue", 40)
-fontSmallObj = pygame.font.SysFont("helveticaneue", 20)
+fontSmallObj = pygame.font.SysFont("helveticaneue", 30)
 
 #msg = "Hi"
 
@@ -180,6 +191,8 @@ q1_screen = False
 q2_screen = False
 q3_screen = False
 welcome_screen = False
+animal_screen = False
+
 
 click = 0
 #active_click = 0
@@ -193,10 +206,18 @@ while True:
         pygame.draw.rect(windowSurfaceObj, notAsLightGreenColor,
                          (283, 0, 100, 680))
         successful_click = create_button("",156.5,595,70,70,MediumGreenColor,darkGreenColor)
+        animal_info = create_button("",40,595,70,70,MediumGreenColor,darkGreenColor)
         if successful_click == 1:
             q1_screen = True
             mainScreen = False
             click = 0
+        if animal_info == 1:
+            mainScreen = False
+            click = 0
+            animal_screen = True
+
+    if animal_screen == True:
+        information_screen()
 
     if q1_screen == True:
         print("q1 screen is true")
@@ -256,6 +277,7 @@ while True:
 
     pygame.display.update()
     fpsClock.tick(30)
+
 
 
 
