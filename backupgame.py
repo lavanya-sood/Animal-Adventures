@@ -40,7 +40,7 @@ def create_text(size,msg,x,y,color):
     windowSurfaceObj.blit(textSurfaceObj, textRectObj)
 
 def question1_screen():
-    windowSurfaceObj.fill(bgdColor)
+    #windowSurfaceObj.fill(bgdColor)
     head1 = "Let's"
     head2 = "Discuss"
     question = "Where did you find it?"
@@ -66,7 +66,7 @@ def question1_screen():
         return random
 
 def question2_screen():
-    windowSurfaceObj.fill(bgdColor)
+    #windowSurfaceObj.fill(bgdColor)
     head1 = "Let's"
     head2 = "Discuss"
     question = "What was it?"
@@ -88,7 +88,7 @@ def question2_screen():
         return op4
 
 def question3_screen():
-    windowSurfaceObj.fill(bgdColor)
+    #windowSurfaceObj.fill(bgdColor)
     head1 = "Let's"
     head2 = "Discuss"
     question = "What color is it?"
@@ -118,7 +118,7 @@ def question3_screen():
         return 0
 
 def done_screen():
-    windowSurfaceObj.fill(bgdColor)
+    #windowSurfaceObj.fill(bgdColor)
     create_text(fontHeadingObj,"Thanks",80,50,darkBlueColor)
 
 #animals = ['Ibis', 'Cat', 'Dog', 'Horse', 'Possum', 'Fish', 'Curlew']
@@ -135,7 +135,7 @@ ibis = {'Scientific Name': 'Australian White Ibis', 'Common Name' : 'Bin Chicken
         }
 
 def information_screen():
-    windowSurfaceObj.fill(bgdColor)
+    #windowSurfaceObj.fill(bgdColor)
     ibisSurfaceObj = pygame.image.load("IbisBigReduced.png")
     windowSurfaceObj.blit(ibisSurfaceObj, (40,50))
     create_text(fontHeadingObj,"Ibis",120,250,darkGreenColor)
@@ -197,6 +197,11 @@ q3_screen = False
 welcome_screen = False
 animal_screen = False
 
+bg = pygame.image.load("leaf bg.jpg")
+
+#soundObj = pygame.mixer.Sound('bensound-jazzcomedy.wav')
+
+
 click = 0
 #active_click = 0
 
@@ -204,8 +209,10 @@ click = 0
 
 while True:
     windowSurfaceObj.fill(bgdColor)
-
+    windowSurfaceObj.blit(bg, (0, 0))
+    #soundObj.play()
     if mainScreen == True:
+        #soundObj.play()
         pygame.draw.rect(windowSurfaceObj, notAsLightGreenColor,
                          (283, 0, 100, 680))
         successful_click_collection = create_image_button('gold-star-sticker-clipart-1.png', 298, 595, 70, 70)
