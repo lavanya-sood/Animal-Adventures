@@ -2,7 +2,6 @@ import pygame, sys
 from pygame.locals import *
 
 def create_button(msg,x,y,w,h,ic,ac):
-    
     mouse = pygame.mouse.get_pos()
 
     active_click = 0
@@ -18,6 +17,19 @@ def create_button(msg,x,y,w,h,ic,ac):
     textRect = textSurf.get_rect()
     textRect.center = ( (x+(w/2)),(y+(h/2)) )
     windowSurfaceObj.blit(textSurf, textRect)
+
+    return active_click
+
+def create_image_button(icon,x,y,w,h):
+    mouse = pygame.mouse.get_pos()
+
+    active_click = 0
+
+    imageSurfaceObj = pygame.image.load(icon)
+    windowSurfaceObj.blit(imageSurfaceObj, (x, y))
+    
+    if x+w > mouse[0] > x and y+h > mouse[1] > y and click == 1:
+        active_click = 1
 
     return active_click
 
@@ -53,7 +65,6 @@ def question1_screen():
         #print("op4")
         return random
 
- 
 def question2_screen():
     windowSurfaceObj.fill(bgdColor)
     head1 = "Let's"
@@ -105,8 +116,6 @@ def question3_screen():
         return op6
     else:
         return 0
-   
-
 
 def done_screen():
     windowSurfaceObj.fill(bgdColor)
@@ -125,11 +134,9 @@ ibis = {'Scientific Name': 'Australian White Ibis', 'Common Name' : 'Bin Chicken
         'Location': 'Australia', 'Color': 'White'
         }
 
-
-
 def information_screen():
     windowSurfaceObj.fill(bgdColor)
-    ibisSurfaceObj = pygame.image.load("IbisBig.png")
+    ibisSurfaceObj = pygame.image.load("IbisBigReduced.png")
     windowSurfaceObj.blit(ibisSurfaceObj, (40,50))
     create_text(fontHeadingObj,"Ibis",120,250,darkGreenColor)
     m = 400
@@ -144,8 +151,6 @@ def information_screen():
         n += 70
         o += 70
 
-
-
 pygame.init()
 fpsClock = pygame.time.Clock()
 
@@ -153,6 +158,9 @@ windowSurfaceObj = pygame.display.set_mode((383, 680))
 pygame.display.set_caption('Animal Adventurers')
 
 #lots of pre-code here
+
+#images
+#starSurfaceObj = pygame.image.load('gold-star-sticker-clipart-1.png')
 
 #colours
 bgdColor = pygame.Color(199, 214, 149)
@@ -171,18 +179,14 @@ lightboxColor = pygame.Color(242, 247, 242)
 
 mousex, mousey = 0, 0
 
+#fonts
 fontHeadingObj = pygame.font.SysFont("helveticaneue", 100)
 fontMediumObj = pygame.font.SysFont("helveticaneue", 40)
-fontSmallObj = pygame.font.SysFont("helveticaneue", 30)
-
-#msg = "Hi"
-
-#cameraButton = Button((71.5, 595), (70, 70))
+fontSmallObj = pygame.font.SysFont("helveticaneue", 20)
 
 mainScreen = True
 storageScreen = False
-
-animalInfoScreen = False
+cameraScreen = False
 whatIsAnimalScreen = False
 searchAnimalScreen = False
 questionAnimalSearchScreen = False
@@ -192,7 +196,6 @@ q2_screen = False
 q3_screen = False
 welcome_screen = False
 animal_screen = False
-
 
 click = 0
 #active_click = 0
@@ -205,22 +208,50 @@ while True:
     if mainScreen == True:
         pygame.draw.rect(windowSurfaceObj, notAsLightGreenColor,
                          (283, 0, 100, 680))
-        successful_click = create_button("",156.5,595,70,70,MediumGreenColor,darkGreenColor)
-        animal_info = create_button("",40,595,70,70,MediumGreenColor,darkGreenColor)
-        if successful_click == 1:
+        successful_click_collection = create_image_button('gold-star-sticker-clipart-1.png', 298, 595, 70, 70)
+        if successful_click_collection == 1:
+            storageScreen = True
+            mainScreen = False
+            click = 0
+        successful_click_camera = create_button("",156.5,595,70,70,MediumGreenColor,darkGreenColor)
+        if successful_click_camera == 1:
+            cameraScreen = True
+            mainScreen = False
+            click = 0
+        if 'Ibis' in ultimoLocal:
+            successful_click_ibis = create_image_button('IbisSmallReduced.png', 298, 510, 70, 70)
+            if successful_click_ibis == 1:
+                ibisFacts = True
+                animal_screen = True
+                mainScreen = False
+                click = 0
+
+    if cameraScreen == True:
+        successful_click_photo_taken = create_button("",156.5,595,70,70,MediumGreenColor,darkGreenColor)
+        if successful_click_photo_taken == 1:
+            whatIsAnimalScreen = True
+            cameraScreen = False
+            click = 0
+
+    if whatIsAnimalScreen == True:
+        successful_click_finding_animal = create_button("",156.5,595,70,70,MediumGreenColor,darkGreenColor)
+        if successful_click_finding_animal == 1:
             q1_screen = True
-            mainScreen = False
+            whatIsAnimalScreen = False
             click = 0
-        if animal_info == 1:
-            mainScreen = False
-            click = 0
+
+    if storageScreen == True:
+        successful_click_ibis = create_image_button('IbisSmallReduced.png', 50, 50, 70, 70)
+        if successful_click_ibis == 1:
+            ibisFacts = True
             animal_screen = True
+            storageScreen = False
+            click = 0
 
     if animal_screen == True:
         information_screen()
-
+        
     if q1_screen == True:
-        print("q1 screen is true")
         stat = question1_screen()
         if stat == 1:
             q2_screen = True
@@ -229,7 +260,6 @@ while True:
             click = 0
 
     if q2_screen == True:
-        print("q2 screen is true")
         stat = question2_screen()
         if stat == 1:
             q2_screen = False
@@ -238,7 +268,6 @@ while True:
             click = 0
 
     if q3_screen == True:
-        print("q3 screen is true")
         stat = question3_screen()
         if stat == 1:
             welcome_screen = True
@@ -248,9 +277,8 @@ while True:
             click = 0
     
     if welcome_screen == True:
-        print("Welcome_screen")
         done_screen()
-
+    
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
@@ -263,7 +291,6 @@ while True:
                 #insert code re: right click of button
             if (event.button == 1):
                 click = 1
-
         elif (event.type == MOUSEBUTTONUP):
             mousex, mousey = event.pos
             if (event.button == 1):
@@ -277,8 +304,3 @@ while True:
 
     pygame.display.update()
     fpsClock.tick(30)
-
-
-
-
-
