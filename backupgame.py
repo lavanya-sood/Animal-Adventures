@@ -182,7 +182,7 @@ mousex, mousey = 0, 0
 #fonts
 fontHeadingObj = pygame.font.SysFont("helveticaneue", 100)
 fontMediumObj = pygame.font.SysFont("helveticaneue", 40)
-fontSmallObj = pygame.font.SysFont("helveticaneue", 20)
+fontSmallObj = pygame.font.SysFont("helveticaneue", 30)
 
 mainScreen = True
 storageScreen = False
