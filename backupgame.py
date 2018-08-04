@@ -21,6 +21,19 @@ def create_button(msg,x,y,w,h,ic,ac):
 
     return active_click
 
+def create_image_button(icon,x,y,w,h):
+    mouse = pygame.mouse.get_pos()
+
+    active_click = 0
+
+    imageSurfaceObj = pygame.image.load(icon)
+    windowSurfaceObj.blit(imageSurfaceObj, (x, y))
+    
+    if x+w > mouse[0] > x and y+h > mouse[1] > y and click == 1:
+        active_click = 1
+
+    return active_click
+
 def create_text(size,msg,x,y,color):
     textSurfaceObj = size.render(msg, False, color)
     textRectObj = textSurfaceObj.get_rect()
