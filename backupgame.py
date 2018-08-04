@@ -213,7 +213,7 @@ while True:
             storageScreen = True
             mainScreen = False
             click = 0
-        successful_click_camera = create_button("",156.5,595,70,70,MediumGreenColor,darkGreenColor)
+        successful_click_camera = create_image_button('camera.png', 156.5, 595, 70, 70)
         if successful_click_camera == 1:
             cameraScreen = True
             mainScreen = False
@@ -227,7 +227,7 @@ while True:
                 click = 0
 
     if cameraScreen == True:
-        successful_click_photo_taken = create_button("",156.5,595,70,70,MediumGreenColor,darkGreenColor)
+        successful_click_photo_taken = create_image_button('camera.png', 156.5, 595, 70, 70)
         if successful_click_photo_taken == 1:
             whatIsAnimalScreen = True
             cameraScreen = False
