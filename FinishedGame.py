@@ -175,7 +175,7 @@ def done_screen():
     windowSurfaceObj.blit(im,(50,50))
     create_text(fontHeadingObj,"Congrats!",20,300,blackColor)
     create_text(fontHeadingObj,"+100",80,400,darkBlueColor)
-    create_text(fontSmallObj,"The illusive ibis is quiet a find!", 10,500,blackColor)
+    create_text(fontSmallObj,"The illusive ibis is quite a find!", 10,500,blackColor)
     create_text(fontSmallObj,"Commonly found in cities but its", 10,525,blackColor)
     create_text(fontSmallObj,"natural habitat are the wetlands.", 10,550,blackColor)
     create_text (fontSmallObj,"Try finding a photo of an Ibis in",10,580,darkBlueColor)
