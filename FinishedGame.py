@@ -161,9 +161,26 @@ def question3_screen():
     else:
         return 0
 
+
 def done_screen():
+    picture = pygame.image.load("frostpng.png")
+    picture = pygame.transform.scale(picture, (300, 650))
+    windowSurfaceObj.blit(picture,(5,20))
+    op1 = create_button("More..",100,250,150,50,darkGreenColor,babyPinkColor)
     #windowSurfaceObj.fill(bgdColor)
-    create_text(fontHeadingObj,"Thanks",80,50,darkBlueColor)
+    im = pygame.image.load("Australian White Ibis.jpg")
+    #im2 = pygame.image.load("Australian White Ibis.jpg")
+    #im2 = pygame.transform.scale(im,(280,150))
+    im = pygame.transform.scale(im,(300,200))
+    windowSurfaceObj.blit(im,(50,50))
+    create_text(fontHeadingObj,"Congrats!",20,300,blackColor)
+    create_text(fontHeadingObj,"+100",80,400,darkBlueColor)
+    create_text(fontSmallObj,"The illusive ibis is quiet a find!", 10,500,blackColor)
+    create_text(fontSmallObj,"Commonly found in cities but its", 10,525,blackColor)
+    create_text(fontSmallObj,"natural habitat are the wetlands.", 10,550,blackColor)
+    create_text (fontSmallObj,"Try finding a photo of an Ibis in",10,580,darkBlueColor)
+    create_text (fontSmallObj,"its natural habitat.",10,600,darkBlueColor)
+    return op1
 
 #animals = ['Ibis', 'Cat', 'Dog', 'Horse', 'Possum', 'Fish', 'Curlew']
 ultimoLocal = ['Ibis', 'Pigeon', 'Dog']
@@ -271,6 +288,7 @@ welcome_screen = False
 animal_screen = False
 storage = False
 main = False
+d_screen = False
 
 bg = pygame.image.load('leaf bg.jpg')
 
@@ -399,13 +417,18 @@ while True:
     if q3_screen == True:
         stat = question3_screen()
         if stat == 1:
-            animal_screen = True
+            d_screen = True
             q3_screen = False
             q2_screen = False
             q1_screen = False
             click = 0
     
-    
+    if d_screen == True:
+        stat = done_screen()
+        if stat == 1:
+            animal_screen = True
+            d_screen = False
+            click = 0
         
         
     
