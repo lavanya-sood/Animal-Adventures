@@ -55,11 +55,20 @@ def create_text(size,msg,x,y,color):
 
 def question1_screen():
     #windowSurfaceObj.fill(bgdColor)
-    head1 = "Let's"
-    head2 = "Discuss"
+    
     question = "Where did you find it?"
-    create_text(fontHeadingObj,head1,80,50,darkGreenColor)
-    create_text(fontHeadingObj,head2,50,120,darkGreenColor)
+    picture = pygame.image.load("frostpng.png")
+    picture = pygame.transform.scale(picture, (280, 150))
+    windowSurfaceObj.blit(picture,(50,50))
+
+    p2 = pygame.image.load("frostpng.png")
+    p2 = pygame.transform.scale(picture,(200,40))
+    windowSurfaceObj.blit(p2,(30,220))
+
+    im = pygame.image.load("Australian White Ibis.jpg")
+    im = pygame.transform.scale(im,(280,150))
+    windowSurfaceObj.blit(im,(50,50))
+
     create_text(fontMediumObj,question,40,230,darkGreenColor)
     op1 = create_button("Water",40,300,300,100,darkGreenColor,lightBlueColor)
     op2 = create_button("Land",40,430,300,100,darkGreenColor,orangeColor)
@@ -84,8 +93,18 @@ def question2_screen():
     head1 = "Let's"
     head2 = "Discuss"
     question = "What was it?"
-    create_text(fontHeadingObj,head1,80,50,darkGreenColor)
-    create_text(fontHeadingObj,head2,50,120,darkGreenColor)
+    picture = pygame.image.load("frostpng.png")
+    picture = pygame.transform.scale(picture, (280, 150))
+    windowSurfaceObj.blit(picture,(50,50))
+
+    p2 = pygame.image.load("frostpng.png")
+    p2 = pygame.transform.scale(picture,(200,40))
+    windowSurfaceObj.blit(p2,(30,220))
+
+    im = pygame.image.load("Australian White Ibis.jpg")
+    im = pygame.transform.scale(im,(280,150))
+    windowSurfaceObj.blit(im,(50,50))
+
     create_text(fontMediumObj,question,40,230,darkGreenColor)
     op1 = create_button("Mammal",40,300,300,50,darkGreenColor,babyPinkColor)
     op2 = create_button("Bird",40,400,300,50,darkGreenColor,orangeColor)
@@ -103,11 +122,22 @@ def question2_screen():
 
 def question3_screen():
     #windowSurfaceObj.fill(bgdColor)
-    head1 = "Let's"
-    head2 = "Discuss"
+    
+   
     question = "What color is it?"
-    create_text(fontHeadingObj,head1,80,50,darkGreenColor)
-    create_text(fontHeadingObj,head2,50,120,darkGreenColor)
+    picture = pygame.image.load("frostpng.png")
+    picture = pygame.transform.scale(picture, (280, 150))
+    windowSurfaceObj.blit(picture,(50,50))
+
+
+    p2 = pygame.image.load("frostpng.png")
+    p2 = pygame.transform.scale(picture,(200,40))
+    windowSurfaceObj.blit(p2,(30,220))
+
+    im = pygame.image.load("Australian White Ibis.jpg")
+    im = pygame.transform.scale(im,(280,150))
+    windowSurfaceObj.blit(im,(50,50))
+
     create_text(fontMediumObj,question,40,230,darkGreenColor)
     op1 = create_button("Brown",40,300,150,50,darkGreenColor,babyPinkColor)
     op2 = create_button("Black",40,400,150,50,darkGreenColor,orangeColor)
@@ -242,10 +272,7 @@ animal_screen = False
 storage = False
 main = False
 
-bg = pygame.image.load("leaf bg.jpg")
-
-#soundObj = pygame.mixer.Sound('bensound-jazzcomedy.wav')
-
+bg = pygame.image.load('leaf bg.jpg')
 
 click = 0
 active_click = 0
@@ -255,11 +282,37 @@ active_click = 0
 while True:
     windowSurfaceObj.fill(bgdColor)
     windowSurfaceObj.blit(bg, (0, 0))
-    #soundObj.play()
+
     if mainScreen == True:
         #soundObj.play()
-        pygame.draw.rect(windowSurfaceObj, notAsLightGreenColor,
-                         (283, 0, 100, 680))
+        sidebar = pygame.image.load("frostpng.png")
+        windowSurfaceObj.blit(sidebar,(283,0))
+        
+        p3 = pygame.image.load("headingad.png")
+        p3 = pygame.transform.scale(p3,(360,149))
+        windowSurfaceObj.blit(p3,(6,10))
+
+        p4 = pygame.image.load("game map.png")
+        p4 = pygame.transform.scale(p4,(280,490))
+        windowSurfaceObj.blit(p4,(10,180))
+
+        p2 = pygame.image.load("frostpng.png")
+        windowSurfaceObj.blit(p2,(0,590))
+
+        p5 = pygame.image.load("koala.png")
+        p5 = pygame.transform.scale(p5,(70,70))
+        windowSurfaceObj.blit(p5,(298,400))
+
+        p6 = pygame.image.load("cat.png")
+        p6 = pygame.transform.scale(p6,(70,70))
+        windowSurfaceObj.blit(p6,(298,300))
+
+        p7 = pygame.image.load("pigeon.png")
+        p7 = pygame.transform.scale(p7,(70,70))
+        windowSurfaceObj.blit(p7,(298,200))
+        
+        #pygame.draw.rect(windowSurfaceObj, notAsLightGreenColor,
+                       #  (283, 0, 100, 680))
         successful_click_collection = create_image_button('gold-star-sticker-clipart-1.png', 298, 595, 70, 70)
         if successful_click_collection == 1:
             storageScreen = True
@@ -274,23 +327,18 @@ while True:
             successful_click_ibis = create_image_button('IbisSmallReduced.png', 298, 510, 70, 70)
             if successful_click_ibis == 1:
                 ibisFacts = True
-                main = True
                 animal_screen = True
                 mainScreen = False
                 click = 0
 
     if cameraScreen == True:
-        successful_click_photo_taken = create_image_button('camera.png', 156.5, 595, 70, 70)
+        im = pygame.image.load("Australian White Ibis.jpg")
+        im = pygame.transform.scale(im,(280,300))
+        windowSurfaceObj.blit(im,(40,100))
+        successful_click_photo_taken = create_button("Let's get some info",40,500,300,100,orangeColor,darkGreenColor)
         if successful_click_photo_taken == 1:
-            whatIsAnimalScreen = True
-            cameraScreen = False
-            click = 0
-
-    if whatIsAnimalScreen == True:
-        successful_click_finding_animal = create_button("",156.5,595,70,70,MediumGreenColor,darkGreenColor)
-        if successful_click_finding_animal == 1:
             q1_screen = True
-            whatIsAnimalScreen = False
+            cameraScreen = False
             click = 0
 
     if storageScreen == True:
@@ -303,7 +351,14 @@ while True:
             click = 0
 
     if animal_screen == True:
-        information_screen()
+        soundIbisGlobal = information_screen()
+        print(soundIbisGlobal)
+        if soundIbisGlobal == 1 and timer_started == 0:
+            start_time = pygame.time.get_ticks()
+            timer_started = 1
+        if timer_started == 1:
+            passed_time = pygame.time.get_ticks() - start_time
+        
         
     if q1_screen == True:
         stat = question1_screen()
@@ -331,7 +386,10 @@ while True:
             click = 0
     
     if welcome_screen == True:
+        #done_screen()
         done_screen()
+        
+        
     
     for event in pygame.event.get():
         if event.type == QUIT:
