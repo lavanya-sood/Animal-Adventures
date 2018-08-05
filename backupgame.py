@@ -218,8 +218,8 @@ def information_screen():
         m +=  70
         n += 70
         o += 70
-
-    return soundIbis
+    mainButton = create_button("Go Back",200,620,150,50,darkGreenColor,darkBlueColor)
+    return soundIbis,mainButton
 
 pygame.init()
 fpsClock = pygame.time.Clock()
@@ -342,6 +342,22 @@ while True:
             click = 0
 
     if storageScreen == True:
+        p5 = pygame.image.load("koala.png")
+        p5 = pygame.transform.scale(p5,(100,100))
+        windowSurfaceObj.blit(p5,(150,25))
+
+        p6 = pygame.image.load("cat.png")
+        p6 = pygame.transform.scale(p6,(100,100))
+        windowSurfaceObj.blit(p6,(275,25))
+
+        p7 = pygame.image.load("pigeon.png")
+        p7 = pygame.transform.scale(p7,(100,100))
+        windowSurfaceObj.blit(p7,(25,150))
+
+        p8 = pygame.image.load("curlew.png")
+        p8 = pygame.transform.scale(p8,(100,100))
+        windowSurfaceObj.blit(p8,(150,150))
+        
         successful_click_ibis = create_image_resize_button('IbisSmall.png', 25, 25, 100, 100)
         if successful_click_ibis == 1:
             ibisFacts = True
@@ -351,8 +367,12 @@ while True:
             click = 0
 
     if animal_screen == True:
-        soundIbisGlobal = information_screen()
-        print(soundIbisGlobal)
+        soundIbisGlobal = information_screen()[0]
+        mp =  information_screen()[1]
+        if mp == 1:
+            mainScreen = True
+            animal_screen = False
+            click = 0
         if soundIbisGlobal == 1 and timer_started == 0:
             start_time = pygame.time.get_ticks()
             timer_started = 1
@@ -379,15 +399,13 @@ while True:
     if q3_screen == True:
         stat = question3_screen()
         if stat == 1:
-            welcome_screen = True
+            animal_screen = True
             q3_screen = False
             q2_screen = False
             q1_screen = False
             click = 0
     
-    if welcome_screen == True:
-        #done_screen()
-        done_screen()
+    
         
         
     
