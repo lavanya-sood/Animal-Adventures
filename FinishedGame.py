@@ -242,7 +242,7 @@ pygame.init()
 fpsClock = pygame.time.Clock()
 
 windowSurfaceObj = pygame.display.set_mode((383, 680))
-pygame.display.set_caption('Animal Adventurers')
+pygame.display.set_caption('Animal Adventures')
 
 #lots of pre-code here
 
