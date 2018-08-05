@@ -150,9 +150,33 @@ ibis = {'Scientific Name': 'Australian White Ibis', 'Common Name' : 'Bin Chicken
 
 def information_screen():
     #windowSurfaceObj.fill(bgdColor)
+    soundIbis = 0
+    
+    p2 = pygame.image.load("frostpng.png")
+    p2 = pygame.transform.scale(p2,(100,100))
+    windowSurfaceObj.blit(p2,(110,240))
+
+    create_text(fontHeadingObj,"Ibis",120,250,darkGreenColor)
+
+    mouse = pygame.mouse.get_pos()
+
     ibisSurfaceObj = pygame.image.load("IbisBigReduced.png")
     windowSurfaceObj.blit(ibisSurfaceObj, (40,50))
-    create_text(fontHeadingObj,"Ibis",120,250,darkGreenColor)
+    
+    #w=283 h=197
+    if 40+283 > mouse[0] > 40 and 50+197 > mouse[1] > 50:
+        im = pygame.image.load("Australian White Ibis.jpg")
+        im = pygame.transform.scale(im,(300,200))
+        windowSurfaceObj.blit(im,(45,45))
+        soundIbis = soundIbisGlobal
+        if soundIbisGlobal == 0:
+            ibisSoundObj.play()
+            soundIbis = 1
+        if passed_time == ibisSoundObj.get_length():
+            soundIbis = 0
+    else:
+    	windowSurfaceObj.blit(ibisSurfaceObj, (40,50))
+
     m = 400
     n = 380
     o = 375
@@ -165,6 +189,8 @@ def information_screen():
         n += 70
         o += 70
 
+    return soundIbis
+
 pygame.init()
 fpsClock = pygame.time.Clock()
 
@@ -172,9 +198,6 @@ windowSurfaceObj = pygame.display.set_mode((383, 680))
 pygame.display.set_caption('Animal Adventurers')
 
 #lots of pre-code here
-
-#images
-#starSurfaceObj = pygame.image.load('gold-star-sticker-clipart-1.png')
 
 #colours
 bgdColor = pygame.Color(199, 214, 149)
@@ -198,6 +221,12 @@ fontHeadingObj = pygame.font.SysFont("helveticaneue", 100)
 fontMediumObj = pygame.font.SysFont("helveticaneue", 40)
 fontSmallObj = pygame.font.SysFont("helveticaneue", 30)
 
+ibisSoundObj = pygame.mixer.Sound('ibissoundfinal.wav')
+
+soundIbisGlobal = 0
+timer_started = 0
+passed_time = 0
+
 mainScreen = True
 storageScreen = False
 cameraScreen = False
@@ -219,7 +248,7 @@ bg = pygame.image.load("leaf bg.jpg")
 
 
 click = 0
-#active_click = 0
+active_click = 0
 
 #pre-code finishes here
 
